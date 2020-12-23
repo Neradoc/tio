@@ -23,6 +23,7 @@
 #define TTY_H
 
 #define KEY_QUESTION 0x3f
+#define KEY_A 0x61
 #define KEY_B 0x62
 #define KEY_C 0x63
 #define KEY_E 0x65
@@ -32,6 +33,7 @@
 #define KEY_S 0x73
 #define KEY_T 0x74
 #define KEY_SHIFT_T 0x54
+#define KEY_CTRL_A 0x01
 #define KEY_CTRL_T 0x14
 #define KEY_V 0x76
 
