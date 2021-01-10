@@ -100,6 +100,7 @@ void handle_command_sequence(char input_char, char previous_char, char *output_c
             case KEY_QUESTION:
                 tio_printf("Key commands:");
                 tio_printf(" ctrl-a ?   List available key commands");
+                tio_printf(" ctrl-a a   Send ctrl-a key code");
                 tio_printf(" ctrl-a b   Send break");
                 tio_printf(" ctrl-a c   Show configuration");
                 tio_printf(" ctrl-a e   Toggle local echo mode");
@@ -107,9 +108,14 @@ void handle_command_sequence(char input_char, char previous_char, char *output_c
                 tio_printf(" ctrl-a l   Clear screen");
                 tio_printf(" ctrl-a q   Quit");
                 tio_printf(" ctrl-a s   Show statistics");
-                tio_printf(" ctrl-a t   Send ctrl-w key code");
                 tio_printf(" ctrl-a T   Toggle timestamps");
                 tio_printf(" ctrl-a v   Show version");
+                break;
+
+            case KEY_A:
+                /* Send ctrl-a key code upon ctrl-a a sequence */
+                *output_char = KEY_CTRL_A;
+                *forward = true;
                 break;
 
             case KEY_B:
@@ -167,12 +173,6 @@ void handle_command_sequence(char input_char, char previous_char, char *output_c
                 /* Show tx/rx statistics upon ctrl-a s sequence */
                 tio_printf("Statistics:");
                 tio_printf(" Sent %lu bytes, received %lu bytes", tx_total, rx_total);
-                break;
-
-            case KEY_T:
-                /* Send ctrl-a key code upon ctrl-a t sequence */
-                *output_char = KEY_CTRL_A;
-                *forward = true;
                 break;
 
             case KEY_SHIFT_T:
